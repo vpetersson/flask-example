@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: flask-example
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: vpetersson/flask-example
+        resources:
+          requests:
+            memory: "64Mi"
+          limits:
+            memory: "128Mi"
+        ports:
+        - name: http
+          containerPort: 5000
